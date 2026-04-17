@@ -1,0 +1,25 @@
+/* Place your CSS styles in this file */
+
+h1 {
+    text-align: center;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: bold;color: red;
+}
+body {
+    background-color: white;
+}
+
+ul {
+    list-style-type:none;
+     font-size: 15px; 
+     background-color: red;
+     border: 5px solid red;
+     text-align: center;
+
+}
+
+li {
+    display:inline;
+    padding: 15px;
+    padding-right: 5px
+}
