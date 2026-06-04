@@ -34,19 +34,3 @@ semuaTrigger.forEach(trigger => {
         cardInduk.classList.toggle('aktif');
     });
 });
-
-// 1. Tutup semua kartu lainnya agar tidak terbuka bersamaan
-        document.querySelectorAll('.info-card-mini').forEach(card => {
-            // Hanya hapus class 'aktif' jika bukan kartu yang sedang diklik
-            if (card !== this.closest('.info-card-mini')) {
-                card.classList.remove('aktif');
-            }
-        });
-
-        // 2. Toggle class 'aktif' pada kartu yang diklik
-        const kotakIni = this.closest('.info-card-mini');
-        if (kotakIni) {
-            kotakIni.classList.toggle('aktif');
-        }
-    });
-});
