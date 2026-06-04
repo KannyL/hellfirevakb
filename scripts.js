@@ -1,3 +1,4 @@
+// --- 1. LOGIKA UNTUK TOMBOL MENU UTAMA (DROP-DOWN) ---
 const tombolMenu = document.querySelector('.menu-toggle');
 const kotakMenu = document.querySelector('.dropdown-menu');
 
@@ -21,13 +22,15 @@ window.addEventListener('click', function(e) {
 });
 
 
+// --- 2. LOGIKA KLIK UNTUK INFO CARD (CURRENCY & CONVERTER) ---
 const semuaTrigger = document.querySelectorAll('.card-trigger');
 
 semuaTrigger.forEach(trigger => {
     trigger.addEventListener('click', function() {
-        
+        // Mencari kotak info-card-mini tempat tombol ini berada
         const cardInduk = this.parentElement;
         
+        // Menambah atau menghapus class 'aktif' untuk memicu animasi CSS
         cardInduk.classList.toggle('aktif');
     });
 });
