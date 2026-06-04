@@ -23,8 +23,13 @@ window.addEventListener('click', function(e) {
 const semuaTrigger = document.querySelectorAll('.card-trigger');
 
 semuaTrigger.forEach(trigger => {
-    trigger.addEventListener('click', function() {
-        const cardInduk = this.parentElement;
-        cardInduk.classList.toggle('aktif');
+    trigger.addEventListener('click', function(e) {
+        e.stopPropagation(); 
+        
+        const kotakIni = this.closest('.info-card-mini');
+        
+        if (kotakIni) {
+            kotakIni.classList.toggle('aktif');
+        }
     });
 });
