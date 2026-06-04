@@ -1,25 +1,214 @@
-/* Place your CSS styles in this file */
-
-h1 {
-    text-align: center;
-    font-family: "Source Sans Pro", sans-serif;
-    font-weight: bold;color: red;
-}
 body {
-    background-color: white;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: #0f0304; 
+    color: #ffffff;
+    min-height: 100vh;
 }
 
-ul {
-    list-style-type:none;
-     font-size: 15px; 
-     background-color: red;
-     border: 5px solid red;
-     text-align: center;
-
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background: linear-gradient(to bottom, #70191D, transparent); 
+    border-bottom: 1px solid rgba(209, 96, 31, 0.2); 
 }
 
-li {
-    display:inline;
-    padding: 15px;
-    padding-right: 5px
+.brand-section h1 {
+    font-size: 26px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 2px;
+    color: #ffffff;
+    text-shadow: 0 0 8px #970A12; 
+}
+
+.brand-section p {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #FECD6D; 
+    margin: 3px 0 0 0;
+    font-weight: bold;
+}
+
+.brand-section {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-logo {
+    width: 55px; 
+    height: 55px;
+    object-fit: contain;
+}
+
+.menu-container {
+    position: relative;
+}
+
+.menu-toggle {
+    background-color: rgba(151, 10, 18, 0.2); 
+    border: 1px solid #D1601F; 
+    font-size: 14px;
+    font-weight: bold;
+    color: #FECD6D;
+    cursor: pointer;
+    padding: 10px 16px;
+    border-radius: 6px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.menu-toggle:hover {
+    background-color: #D1601F;
+    color: white;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #1a0506;
+    border: 1px solid #5686BB; 
+    border-radius: 8px;
+    width: 160px;
+    box-shadow: 0px 8px 24px rgba(0,0,0,0.6);
+    overflow: hidden;
+    z-index: 100;
+    display: none; /* Sembunyi di awal, nanti dibuka pakai JS */
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 12px;
+    text-align: left;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(151, 10, 18, 0.2);
+    transition: 0.2s;
+    padding-left: 20px;
+}
+
+.dropdown-menu a.active {
+    background-color: #5686BB; 
+    color: white;
+    font-weight: bold;
+}
+
+.dropdown-menu a:hover:not(.active) {
+    background-color: rgba(209, 96, 31, 0.2);
+    color: #FECD6D;
+}
+
+/* 4. KONTEN TENGAH */
+.main-container {
+    max-width: 550px;
+    margin: 60px auto 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.project-badge {
+    display: inline-block;
+    background-color: #970A12; 
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.main-container h2 {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 20px 0;
+    color: #ffffff;
+}
+
+.main-container h2 span {
+    color: #FECD6D; 
+}
+
+.info-card {
+    background: rgba(112, 25, 29, 0.15); 
+    border: 1px solid rgba(209, 96, 31, 0.25); 
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    margin-bottom: 30px;
+}
+
+.info-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #e0d0cc;
+    text-align: justify;
+    margin: 0 0 15px 0;
+}
+
+.info-card p:last-child {
+    margin-bottom: 0;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    background-color: #5686BB; 
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 14px rgba(86, 134, 187, 0.4);
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #D1601F; 
+    box-shadow: 0 4px 14px rgba(209, 96, 31, 0.4);
+    transform: translateY(-2px);
+}
+
+.cards-kolom-wrapper {
+    display: flex;
+    gap: 20px; /* Jarak spasi antar kotak kanan-kiri */
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+.info-card-mini {
+    flex: 1; /* Biar ukuran kanan dan kiri sama rata */
+    background: rgba(112, 25, 29, 0.15); 
+    border: 1px solid rgba(209, 96, 31, 0.25); 
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.info-card-mini strong {
+    color: #FECD6D;
+}
+
+@media (max-width: 600px) {
+    .cards-kolom-wrapper {
+        flex-direction: column;
+        gap: 15px;
+    }
 }
