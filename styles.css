@@ -504,9 +504,21 @@ header {
 }
 
 .card-image {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
+    width: 100%;        
+    height: 150px;      
+    object-fit: cover;  
     border-radius: 10px;
-    margin-bottom: 10px;
+    display: block;     
+    margin-bottom: 15px;
+}
+
+.info-card-mini {
+    width: 100%;
+    max-width: 350px;   
+    margin: 0 auto;     
+    background: #2a1a1a;
+    border: 1px solid #d1601f;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
 }
