@@ -535,3 +535,25 @@ header {
     display: flex;
     flex-direction: column;
 }
+
+/* Container pembungkus kartu */
+.container-kartu {
+    display: flex; /* Atau 'grid' */
+    flex-wrap: wrap; /* Supaya otomatis turun ke bawah kalau tidak muat */
+    gap: 20px;       /* INI KUNCI UTAMA: Memberi jarak 20px antar kotak */
+    padding: 20px;   /* Memberi jarak dari pinggir layar */
+    justify-content: center; /* Supaya kartu selalu di tengah */
+}
+
+/* Setiap kartu */
+.info-card-mini {
+    flex: 1 1 300px; /* Kartu akan memenuhi ruang tapi minimal 300px lebarnya */
+    margin: 0;       /* Pastikan tidak ada margin tambahan yang aneh */
+}
+
+.card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block; /* Menghilangkan spasi aneh di bawah gambar */
+}
