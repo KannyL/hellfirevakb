@@ -310,3 +310,171 @@ header {
 .info-card-mini.aktif .status-trend strong {
     color: #FECD6D;
 }
+
+/* PRODUCT PAGE - PYTHON CURRENCY CONVERTER */
+.product-container {
+    max-width: 760px;
+}
+
+.product-intro p {
+    text-align: center;
+}
+
+.converter-card {
+    background: linear-gradient(145deg, rgba(112, 25, 29, 0.28), rgba(13, 2, 3, 0.88));
+    border: 1px solid rgba(254, 205, 109, 0.22);
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255,255,255,0.08);
+    margin-bottom: 45px;
+}
+
+.converter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.converter-label {
+    margin: 0 0 6px 0;
+    color: #FECD6D;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.converter-header h3 {
+    margin: 0;
+    font-size: 27px;
+    text-align: left;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 92px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(86, 134, 187, 0.18);
+    border: 1px solid rgba(86, 134, 187, 0.55);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.converter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto 1fr;
+    gap: 14px;
+    align-items: end;
+    text-align: left;
+}
+
+.converter-grid label {
+    color: #FECD6D;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.converter-grid input,
+.converter-grid select {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+    padding: 13px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(209, 96, 31, 0.55);
+    background: rgba(5, 1, 1, 0.72);
+    color: #ffffff;
+    outline: none;
+    font-size: 15px;
+}
+
+.converter-grid input:focus,
+.converter-grid select:focus {
+    border-color: #FECD6D;
+    box-shadow: 0 0 0 3px rgba(254, 205, 109, 0.12);
+}
+
+.swap-button {
+    height: 46px;
+    width: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(254, 205, 109, 0.45);
+    background: rgba(209, 96, 31, 0.2);
+    color: #FECD6D;
+    cursor: pointer;
+    font-size: 22px;
+    transition: 0.25s;
+}
+
+.swap-button:hover {
+    transform: rotate(180deg);
+    background: rgba(209, 96, 31, 0.42);
+}
+
+.convert-button {
+    border: none;
+    cursor: pointer;
+    margin-top: 22px;
+    width: 100%;
+    justify-content: center;
+}
+
+.convert-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.result-box {
+    margin-top: 22px;
+    padding: 20px;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(255,255,255,0.08);
+    text-align: left;
+}
+
+.result-title {
+    margin: 0 0 8px 0;
+    color: #FECD6D;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+.result-box h3 {
+    margin: 0;
+    font-size: 23px;
+    color: #ffffff;
+    word-break: break-word;
+}
+
+.rate-info {
+    margin: 10px 0 0 0;
+    color: #e0d0cc;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+    .converter-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .converter-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .swap-button {
+        width: 100%;
+        border-radius: 10px;
+    }
+}
