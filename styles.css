@@ -522,3 +522,16 @@ header {
     border-radius: 15px;
     text-align: center;
 }
+
+.desc-text {
+    font-size: 13px;       
+    line-height: 1.6;      
+    color: #cccccc;        
+    margin-top: 10px;
+    text-align: justify;   
+}
+
+.info-card-mini {
+    display: flex;
+    flex-direction: column;
+}
