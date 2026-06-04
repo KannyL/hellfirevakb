@@ -26,11 +26,13 @@ window.addEventListener('click', function(e) {
 const semuaTrigger = document.querySelectorAll('.card-trigger');
 
 semuaTrigger.forEach(trigger => {
-    trigger.addEventListener('click', function() {
-        // Mencari kotak info-card-mini tempat tombol ini berada
-        const cardInduk = this.parentElement;
+    trigger.addEventListener('click', function(e) {
+        e.stopPropagation(); 
         
-        // Menambah atau menghapus class 'aktif' untuk memicu animasi CSS
-        cardInduk.classList.toggle('aktif');
+        const cardInduk = this.closest('.info-card-mini');
+        
+        if (cardInduk) {
+            cardInduk.classList.toggle('aktif');
+        }
     });
 });
