@@ -1,34 +1,16 @@
-const tombolMenu = document.querySelector('.menu-toggle');
-const kotakMenu = document.querySelector('.dropdown-menu');
-
-if (tombolMenu && kotakMenu) {
-    tombolMenu.addEventListener('click', function(e) {
-        e.stopPropagation(); 
-        if (kotakMenu.style.display === 'block') {
-            kotakMenu.style.display = 'none';
-        } else {
-            kotakMenu.style.display = 'block';
-        }
-    });
-}
-
-window.addEventListener('click', function(e) {
-    if (tombolMenu && kotakMenu) {
-        if (!tombolMenu.contains(e.target) && !kotakMenu.contains(e.target)) {
-            kotakMenu.style.display = 'none';
-        }
-    }
-});
-
+// --- LOGIKA KLIK UNTUK INFO CARD (CURRENCY, CONVERTER, FORGE) ---
 const semuaTrigger = document.querySelectorAll('.card-trigger');
 
 semuaTrigger.forEach(trigger => {
     trigger.addEventListener('click', function(e) {
+        // Mencegah klik menyebar ke elemen lain
         e.stopPropagation(); 
         
+        // Mencari pembungkus terdekat yaitu .info-card-mini
         const kotakIni = this.closest('.info-card-mini');
         
         if (kotakIni) {
+            // Toggle class 'aktif' hanya pada kotak yang diklik
             kotakIni.classList.toggle('aktif');
         }
     });
