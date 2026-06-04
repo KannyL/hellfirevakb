@@ -34,3 +34,26 @@ semuaTrigger.forEach(trigger => {
         cardInduk.classList.toggle('aktif');
     });
 });
+
+// --- LOGIKA KLIK UNTUK INFO CARD (CURRENCY & CONVERTER) ---
+const semuaTrigger = document.querySelectorAll('.card-trigger');
+
+semuaTrigger.forEach(trigger => {
+    trigger.addEventListener('click', function(e) {
+        e.stopPropagation(); 
+        
+        const kotakIni = this.closest('.info-card-mini');
+        
+        // 1. Tutup semua kartu lainnya terlebih dahulu
+        document.querySelectorAll('.info-card-mini').forEach(card => {
+            if (card !== kotakIni) {
+                card.classList.remove('aktif');
+            }
+        });
+        
+        // 2. Buka/tutup kartu yang diklik
+        if (kotakIni) {
+            kotakIni.classList.toggle('aktif');
+        }
+    });
+});
