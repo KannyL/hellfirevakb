@@ -154,23 +154,10 @@ header {
 }
 
 .main-container {
-    max-width: 650px; /* Diperlebar sedikit agar teks punya ruang */
+    max-width: 800px; 
     margin: 60px auto;
     padding: 0 20px;
     text-align: center;
-}
-
-.project-badge {
-    display: inline-block;
-    background-color: #970A12; 
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: bold;
-    padding: 4px 10px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
 }
 
 .main-container h2 {
@@ -188,12 +175,12 @@ header {
 .info-card {
     background: rgba(112, 25, 29, 0.15); 
     border: 1px solid rgba(209, 96, 31, 0.25); 
-    border-top: 3px solid #D1601F; 
+    border-top: none; 
     padding: 25px;
     border-radius: 12px;
     margin-bottom: 35px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    height: auto; /* Memastikan kotak memanjang otomatis ke bawah mengikuti teks */
+    height: auto; 
     overflow: visible;
 }
 
@@ -211,7 +198,7 @@ header {
 
 .cards-kolom-wrapper {
     display: flex;
-    gap: 20px; 
+    gap: 15px; 
     margin-bottom: 35px;
     text-align: justify;
 }
@@ -266,7 +253,7 @@ header {
 }
 
 .info-card-mini.aktif .card-content {
-    max-height: 500px; /* Ditambah biat teks panjang tidak terpotong */
+    max-height: 500px; 
     margin-top: 15px;
     opacity: 1;
 }
@@ -301,7 +288,7 @@ header {
     transform: translateY(-2px);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .cards-kolom-wrapper {
         flex-direction: column;
         gap: 15px;
