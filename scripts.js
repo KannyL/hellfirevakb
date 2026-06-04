@@ -36,3 +36,16 @@
             }
         });
     });
+
+// --- 3. TOMBOL SWAP UNTUK CURRENCY CONVERTER ---
+const swapBtn = document.getElementById('swapBtn');
+const fromCurrency = document.getElementById('fromCurrency');
+const toCurrency = document.getElementById('toCurrency');
+
+if (swapBtn && fromCurrency && toCurrency) {
+    swapBtn.addEventListener('click', function () {
+        const temp = fromCurrency.value;
+        fromCurrency.value = toCurrency.value;
+        toCurrency.value = temp;
+    });
+}

@@ -1,18 +1,17 @@
-<main>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Nama Web Kamu</title>
+    <title>Product - Hellfire Currency Converter</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
 </head>
 <body>
 
     <header>
         <div class="brand-section">
             <img src="LOGO_HELLFIRE.png" alt="Logo Hellfire" class="brand-logo">
-            
             <div class="brand-text">
                 <h1>Hellfire</h1>
                 <p>SMAN 71 Jakarta</p>
@@ -27,18 +26,212 @@
                 <a href="design.html">Design</a>
                 <a href="product.html" class="active">Product</a>
             </div>
+        </div>
     </header>
 
-    <main class="main-container">
-        <h2>Currency Converter <span>Kami</span></h2>
-        <div class="info-card">
-            <p>Tulis penjelasan tentang halaman ini di sini...</p>
+    <main class="main-container product-container">
+        <span class="project-badge">Python App Running in Browser</span>
+        <h2>Hellfire <span>Currency Converter</span></h2>
+        
+        <div class="info-card product-intro">
+            <p>
+                Aplikasi ini menjalankan kode Python langsung di browser pengguna menggunakan Pyodide, sehingga tidak membutuhkan backend/server Python.
+                Sumber kurs sudah diganti dari Google Finance ke Currency API melalui CDN jsDelivr yang lebih aman untuk browser client dan tidak memerlukan API key.
+            </p>
         </div>
-    </main>
-<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAHJEBP7_eA&#x2F;Dv83mW3pYJvLuVIN0n2YDg&#x2F;view?utm_content=DAHJEBP7_eA&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">The Konsep</a> oleh BAYU DWI CAHYO
+
+        <section class="converter-card" aria-label="Currency Converter App">
+            <div class="converter-header">
+                <div>
+                    <p class="converter-label">Live Exchange Tool</p>
+                    <h3>Convert Currency</h3>
+                </div>
+                <span id="appStatus" class="status-pill">Loading Python...</span>
+            </div>
+
+            <div class="converter-grid">
+                <label>
+                    Amount
+                    <input id="amountInput" type="number" min="0" step="0.01" value="1" placeholder="Masukkan nominal">
+                </label>
+
+                <label>
+                    From
+                    <select id="fromCurrency">
+                        <option value="USD">USD - US Dollar</option>
+                        <option value="IDR" selected>IDR - Indonesian Rupiah</option>
+                        <option value="EUR">EUR - Euro</option>
+                        <option value="JPY">JPY - Japanese Yen</option>
+                        <option value="SGD">SGD - Singapore Dollar</option>
+                        <option value="MYR">MYR - Malaysian Ringgit</option>
+                        <option value="AUD">AUD - Australian Dollar</option>
+                        <option value="GBP">GBP - British Pound</option>
+                        <option value="CNY">CNY - Chinese Yuan</option>
+                        <option value="KRW">KRW - South Korean Won</option>
+                        <option value="THB">THB - Thai Baht</option>
+                    </select>
+                </label>
+
+                <button id="swapBtn" class="swap-button" type="button" title="Tukar mata uang">⇄</button>
+
+                <label>
+                    To
+                    <select id="toCurrency">
+                        <option value="USD" selected>USD - US Dollar</option>
+                        <option value="IDR">IDR - Indonesian Rupiah</option>
+                        <option value="EUR">EUR - Euro</option>
+                        <option value="JPY">JPY - Japanese Yen</option>
+                        <option value="SGD">SGD - Singapore Dollar</option>
+                        <option value="MYR">MYR - Malaysian Ringgit</option>
+                        <option value="AUD">AUD - Australian Dollar</option>
+                        <option value="GBP">GBP - British Pound</option>
+                        <option value="CNY">CNY - Chinese Yuan</option>
+                        <option value="KRW">KRW - South Korean Won</option>
+                        <option value="THB">THB - Thai Baht</option>
+                    </select>
+                </label>
+            </div>
+
+            <button id="convertBtn" class="btn-primary convert-button" type="button" disabled>Convert Now</button>
+
+            <div class="result-box">
+                <p class="result-title">Result</p>
+                <h3 id="resultText">Menunggu Python selesai dimuat...</h3>
+                <p id="rateInfo" class="rate-info">Source: Currency API via jsDelivr</p>
+            </div>
+        </section>
     </main>
 
     <script src="scripts.js"></script>
+    <script>
+        window.addEventListener('load', async function () {
+            const statusEl = document.getElementById('appStatus');
+            const convertBtn = document.getElementById('convertBtn');
+            const resultText = document.getElementById('resultText');
+            const rateInfo = document.getElementById('rateInfo');
+
+            try {
+                statusEl.textContent = 'Loading Python...';
+                window.pyodide = await loadPyodide();
+
+                await window.pyodide.runPythonAsync(`
+import json
+from datetime import datetime
+from js import document, fetch
+
+# Google Finance diganti karena sering diblokir CORS pada browser client.
+# API utama ini bisa diakses langsung dari browser, tanpa API key, dan cocok untuk website static/W3Space/GitHub Pages.
+API_ENDPOINTS = [
+    'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{base}.json',
+    'https://latest.currency-api.pages.dev/v1/currencies/{base}.json'
+]
+
+# Cadangan terakhir supaya aplikasi tetap memberi hasil ketika internet/API sedang bermasalah.
+# Nilai ini hanya estimasi dan akan diberi label OFFLINE ESTIMATE.
+OFFLINE_USD_RATES = {
+    'usd': 1,
+    'idr': 16200,
+    'eur': 0.92,
+    'jpy': 155,
+    'sgd': 1.35,
+    'myr': 4.70,
+    'aud': 1.52,
+    'gbp': 0.79,
+    'cny': 7.25,
+    'krw': 1370,
+    'thb': 36.5
+}
+
+async def fetch_json(url):
+    response = await fetch(url, { 'cache': 'no-store' })
+    if not response.ok:
+        raise Exception(f'HTTP {response.status}')
+    text = await response.text()
+    return json.loads(text)
+
+async def get_api_rate(from_currency, to_currency):
+    base = from_currency.lower()
+    target = to_currency.lower()
+
+    if base == target:
+        return 1.0, 'Same currency', '-'
+
+    last_error = None
+    for endpoint in API_ENDPOINTS:
+        try:
+            url = endpoint.format(base=base)
+            data = await fetch_json(url)
+            rates = data.get(base, {})
+            if target in rates:
+                return float(rates[target]), 'Currency API via jsDelivr/CDN', data.get('date', '-')
+        except Exception as exc:
+            last_error = exc
+
+    raise Exception(f'API tidak bisa diakses: {last_error}')
+
+
+def get_offline_rate(from_currency, to_currency):
+    base = from_currency.lower()
+    target = to_currency.lower()
+
+    if base not in OFFLINE_USD_RATES or target not in OFFLINE_USD_RATES:
+        raise Exception('Mata uang belum tersedia di data cadangan')
+
+    # Konversi silang melalui USD.
+    # Contoh: IDR -> USD = USD/IDR, IDR -> EUR = EUR/IDR.
+    rate = OFFLINE_USD_RATES[target] / OFFLINE_USD_RATES[base]
+    return float(rate), 'OFFLINE ESTIMATE - API tidak dapat diakses', datetime.now().strftime('%d %b %Y')
+
+async def get_rate(from_currency, to_currency):
+    try:
+        return await get_api_rate(from_currency, to_currency)
+    except Exception:
+        return get_offline_rate(from_currency, to_currency)
+
+async def convert_currency(event=None):
+    amount_el = document.getElementById('amountInput')
+    from_el = document.getElementById('fromCurrency')
+    to_el = document.getElementById('toCurrency')
+    result_el = document.getElementById('resultText')
+    rate_el = document.getElementById('rateInfo')
+    status_el = document.getElementById('appStatus')
+
+    try:
+        amount = float(amount_el.value or 0)
+        from_currency = from_el.value
+        to_currency = to_el.value
+
+        result_el.textContent = 'Mengambil data kurs...'
+        rate_el.textContent = 'Menghubungi Currency API via CDN...'
+        status_el.textContent = 'Fetching Rate...'
+
+        rate, source, date_info = await get_rate(from_currency, to_currency)
+        result = amount * rate
+        now = datetime.now().strftime('%d %b %Y %H:%M:%S')
+
+        result_el.textContent = f'{amount:,.2f} {from_currency} = {result:,.2f} {to_currency}'
+        rate_el.textContent = f'Rate: 1 {from_currency} = {rate:,.6f} {to_currency} | Source: {source} | Data date: {date_info} | Checked: {now}'
+        status_el.textContent = 'Ready'
+    except Exception as exc:
+        result_el.textContent = 'Konversi gagal'
+        rate_el.textContent = f'Detail: {exc}'
+        status_el.textContent = 'Error'
+
+from pyodide.ffi import create_proxy
+convert_proxy = create_proxy(convert_currency)
+document.getElementById('convertBtn').addEventListener('click', convert_proxy)
+`);
+
+                statusEl.textContent = 'Ready';
+                convertBtn.disabled = false;
+                resultText.textContent = 'Masukkan nominal, pilih mata uang, lalu klik Convert Now.';
+                rateInfo.textContent = 'Source: Currency API via jsDelivr/CDN';
+            } catch (err) {
+                statusEl.textContent = 'Error';
+                resultText.textContent = 'Python gagal dimuat';
+                rateInfo.textContent = 'Cek koneksi internet/CDN Pyodide. Detail: ' + err.message;
+            }
+        });
+    </script>
 </body>
 </html>
-</main>
