@@ -5,27 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hellfire Forge - Converter</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            color: #ffffff;
-            min-height: 100vh;
-            background-color: #0d0203;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(151, 10, 18, 0.2) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(209, 96, 31, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(15, 3, 4, 1) 0%, #050101 100%);
-            background-attachment: fixed;
-            position: relative;
-            overflow-x: hidden;
-        }
+</head>
+<body>
 
-        body::before, body::after {
-            content: "";
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: rgba(151, 10, 18, 0
+    <header>
+        <div class="brand-section">
+            <img src="LOGO_HELLFIRE.png" alt="Logo Hellfire" class="brand-logo">
+            <div class="brand-text">
+                <h1>Hellfire</h1>
+                <p>SMAN 71 Jakarta</p>
+            </div>
+        </div>
+        
+        <div class="menu-container">
+            <button class="menu-toggle">MENU ☰</button>
+            <div class="dropdown-menu">
+                <a href="index.html" class="active">Home</a>
+                <a href="About us.html">About us</a>
+                <a href="Design.html">Design</a>
+                <a href="product.html">Product</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        
+        <h2>The Interdimensional<br><span>Currency Forge</span></h2>
+        
+        <div class="info-card">
+            <p>
+                Welcome to Hellfire Currency Converter. Mengonversi mata uang sekarang nggak perlu ribet lagi. Cukup pilih mata uang asal dan tujuan, masukkan nominal yang kamu inginkan, dan hasil konversinya akan langsung tersedia.
+            </p>
+            <p>
+                Dengan desain yang simpel dan mudah dipahami, Hellfire Currency Converter dibuat untuk membantu siapa saja mendapatkan informasi nilai tukar secara cepat dan praktis. Jadi, kapan pun kamu membutuhkan konversi mata uang, semuanya bisa dilakukan dalam satu tempat dengan mudah.
+            </p>
+        </div>
+
+        <div class="cards-kolom-wrapper">
+            
+            <div class="info-card-mini card-currency">
+                <div class="card-trigger">
+                    <div class="card-status">
+                        <span class="status-dot pulsing"></span>
+                        <span class="status-trend"><strong>Apa itu Currency?</strong></span>
+                    </div>
+                    <span class="panah-tanda">▼</span>
+                </div>
+                <div class="card-content">
+                    <p>
+                        <strong>“Currency”—Mata Uang.</strong> Angka yang terus bergerak, nilai yang naik dan turun. Seperti detak nadi dunia bisa melambung tinggi penuh kepastian, bisa juga merosot membawa ragu.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-card-mini card-converter">
+                <div class="card-trigger">
+                    <div class="card-status">
+                        <span class="status-icon">⇄</span>
+                        <span class="status-trend"><strong>Apa itu Converter?</strong></span>
+                    </div>
+                    <span class="panah-tanda">▼</span>
+                </div>
+                <div class="card-content">
+                    <p>
+                        <strong>“Converter”—Pengonversi.</strong> Sebuah jembatan yang menghubungkan dua titik berbeda. Ada kesetaraan, ada arah, dan ada kepastian nilai di ujungnya.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-card-mini card-forge">
+                <div class="card-trigger">
+                    <div class="card-status">
+                        <span class="status-icon">🔥</span>
+                        <span class="status-trend"><strong>Apa itu Forge?</strong></span>
+                    </div>
+                    <span class="panah-tanda">▼</span>
+                </div>
+                <div class="card-content">
+                    <p>
+                        <strong>“Forge”—Tempaan.</strong> Proses membentuk sesuatu menjadi lebih kuat, presisi, dan bernilai tinggi melalui proses yang matang dan teruji waktu.
+                    </p>
+                </div>
+            </div>
+
+        </div> 
+
+        <a href="#" class="btn-primary">Mulai Konversi Sekarang</a>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
