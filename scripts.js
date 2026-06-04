@@ -1,36 +1,38 @@
 // --- 1. LOGIKA UNTUK TOMBOL MENU UTAMA (DROP-DOWN) ---
-const tombolMenu = document.querySelector('.menu-toggle');
-const kotakMenu = document.querySelector('.dropdown-menu');
-
-if (tombolMenu && kotakMenu) {
-    tombolMenu.addEventListener('click', function(e) {
-        e.stopPropagation(); 
-        if (kotakMenu.style.display === 'block') {
-            kotakMenu.style.display = 'none';
-        } else {
-            kotakMenu.style.display = 'block';
-        }
-    });
-}
-
-window.addEventListener('click', function(e) {
+    const tombolMenu = document.querySelector('.menu-toggle');
+    const kotakMenu = document.querySelector('.dropdown-menu');
+    
     if (tombolMenu && kotakMenu) {
-        if (!tombolMenu.contains(e.target) && !kotakMenu.contains(e.target)) {
-            kotakMenu.style.display = 'none';
-        }
+        tombolMenu.addEventListener('click', function(e) {
+            e.stopPropagation(); 
+            if (kotakMenu.style.display === 'block') {
+                kotakMenu.style.display = 'none';
+            } else {
+                kotakMenu.style.display = 'block';
+            }
+        });
     }
-});
-
-
-// --- 2. LOGIKA KLIK UNTUK INFO CARD (CURRENCY & CONVERTER) ---
-const semuaTrigger = document.querySelectorAll('.card-trigger');
-
-semuaTrigger.forEach(trigger => {
-    trigger.addEventListener('click', function() {
-        // Mencari kotak info-card-mini tempat tombol ini berada
-        const cardInduk = this.parentElement;
-        
-        // Menambah atau menghapus class 'aktif' untuk memicu animasi CSS
-        cardInduk.classList.toggle('aktif');
+    
+    window.addEventListener('click', function(e) {
+        if (tombolMenu && kotakMenu) {
+            if (!tombolMenu.contains(e.target) && !kotakMenu.contains(e.target)) {
+                kotakMenu.style.display = 'none';
+            }
+        }
     });
-});
+    
+    
+    // --- 2. LOGIKA KLIK UNTUK INFO CARD (CURRENCY & CONVERTER) ---
+    const semuaTrigger = document.querySelectorAll('.card-trigger');
+    
+    semuaTrigger.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+            e.stopPropagation(); 
+            
+            const cardInduk = this.closest('.info-card-mini');
+            
+            if (cardInduk) {
+                cardInduk.classList.toggle('aktif');
+            }
+        });
+    });
